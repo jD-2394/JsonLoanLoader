@@ -65,6 +65,7 @@ namespace SilverWorkJsonLoader
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.SelectSummary = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.StateSelector = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -79,6 +80,9 @@ namespace SilverWorkJsonLoader
             this.StateSum = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.SaveSummary = new System.Windows.Forms.Button();
+            this.SaveState = new System.Windows.Forms.Button();
+            this.SaveAll = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -384,6 +388,7 @@ namespace SilverWorkJsonLoader
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.SelectSummary);
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.StateSelector);
             this.groupBox4.Controls.Add(this.label21);
@@ -398,15 +403,25 @@ namespace SilverWorkJsonLoader
             this.groupBox4.Controls.Add(this.StateSum);
             this.groupBox4.Location = new System.Drawing.Point(617, 10);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(186, 179);
+            this.groupBox4.Size = new System.Drawing.Size(186, 215);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Subject Appraised Amount Summary";
             // 
+            // SelectSummary
+            // 
+            this.SelectSummary.Enabled = false;
+            this.SelectSummary.FormattingEnabled = true;
+            this.SelectSummary.Location = new System.Drawing.Point(10, 43);
+            this.SelectSummary.Name = "SelectSummary";
+            this.SelectSummary.Size = new System.Drawing.Size(171, 21);
+            this.SelectSummary.TabIndex = 12;
+            this.SelectSummary.SelectedIndexChanged += new System.EventHandler(this.SelectSummary_SelectedIndexChanged);
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(8, 120);
+            this.label16.Location = new System.Drawing.Point(7, 163);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 13);
             this.label16.TabIndex = 10;
@@ -414,6 +429,7 @@ namespace SilverWorkJsonLoader
             // 
             // StateSelector
             // 
+            this.StateSelector.Enabled = false;
             this.StateSelector.FormattingEnabled = true;
             this.StateSelector.Location = new System.Drawing.Point(77, 15);
             this.StateSelector.Name = "StateSelector";
@@ -433,7 +449,7 @@ namespace SilverWorkJsonLoader
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(10, 145);
+            this.label17.Location = new System.Drawing.Point(9, 188);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(51, 13);
             this.label17.TabIndex = 9;
@@ -442,7 +458,7 @@ namespace SilverWorkJsonLoader
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(13, 65);
+            this.label18.Location = new System.Drawing.Point(12, 108);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(47, 13);
             this.label18.TabIndex = 6;
@@ -450,7 +466,7 @@ namespace SilverWorkJsonLoader
             // 
             // StateMaximum
             // 
-            this.StateMaximum.Location = new System.Drawing.Point(67, 145);
+            this.StateMaximum.Location = new System.Drawing.Point(66, 188);
             this.StateMaximum.Name = "StateMaximum";
             this.StateMaximum.Size = new System.Drawing.Size(115, 20);
             this.StateMaximum.TabIndex = 7;
@@ -458,7 +474,7 @@ namespace SilverWorkJsonLoader
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(13, 90);
+            this.label19.Location = new System.Drawing.Point(12, 133);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(42, 13);
             this.label19.TabIndex = 5;
@@ -466,7 +482,7 @@ namespace SilverWorkJsonLoader
             // 
             // StateMinimum
             // 
-            this.StateMinimum.Location = new System.Drawing.Point(67, 117);
+            this.StateMinimum.Location = new System.Drawing.Point(66, 160);
             this.StateMinimum.Name = "StateMinimum";
             this.StateMinimum.Size = new System.Drawing.Size(115, 20);
             this.StateMinimum.TabIndex = 8;
@@ -474,7 +490,7 @@ namespace SilverWorkJsonLoader
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(14, 40);
+            this.label20.Location = new System.Drawing.Point(13, 83);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(28, 13);
             this.label20.TabIndex = 4;
@@ -482,50 +498,86 @@ namespace SilverWorkJsonLoader
             // 
             // StateMedian
             // 
-            this.StateMedian.Location = new System.Drawing.Point(67, 92);
+            this.StateMedian.Location = new System.Drawing.Point(66, 135);
             this.StateMedian.Name = "StateMedian";
             this.StateMedian.Size = new System.Drawing.Size(115, 20);
             this.StateMedian.TabIndex = 3;
             // 
             // StateAverage
             // 
-            this.StateAverage.Location = new System.Drawing.Point(67, 65);
+            this.StateAverage.Location = new System.Drawing.Point(66, 108);
             this.StateAverage.Name = "StateAverage";
             this.StateAverage.Size = new System.Drawing.Size(115, 20);
             this.StateAverage.TabIndex = 3;
             // 
             // StateSum
             // 
-            this.StateSum.Location = new System.Drawing.Point(67, 40);
+            this.StateSum.Location = new System.Drawing.Point(66, 83);
             this.StateSum.Name = "StateSum";
             this.StateSum.Size = new System.Drawing.Size(115, 20);
             this.StateSum.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(674, 195);
+            this.button1.Location = new System.Drawing.Point(674, 231);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 20);
             this.button1.TabIndex = 6;
             this.button1.Text = "Extract Data From JSON";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.ImportJson_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(573, 195);
+            this.button2.Location = new System.Drawing.Point(573, 231);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 20);
             this.button2.TabIndex = 7;
             this.button2.Text = "Clear Form";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.Clear_Form_Click);
+            // 
+            // SaveSummary
+            // 
+            this.SaveSummary.Enabled = false;
+            this.SaveSummary.Location = new System.Drawing.Point(425, 177);
+            this.SaveSummary.Name = "SaveSummary";
+            this.SaveSummary.Size = new System.Drawing.Size(182, 20);
+            this.SaveSummary.TabIndex = 8;
+            this.SaveSummary.Text = "Save Summary Json As";
+            this.SaveSummary.UseVisualStyleBackColor = true;
+            this.SaveSummary.Click += new System.EventHandler(this.SaveSummaryAs_Click);
+            // 
+            // SaveState
+            // 
+            this.SaveState.Enabled = false;
+            this.SaveState.Location = new System.Drawing.Point(425, 198);
+            this.SaveState.Name = "SaveState";
+            this.SaveState.Size = new System.Drawing.Size(182, 20);
+            this.SaveState.TabIndex = 9;
+            this.SaveState.Text = "Save State Json As";
+            this.SaveState.UseVisualStyleBackColor = true;
+            this.SaveState.Click += new System.EventHandler(this.SaveStateAs_Click);
+            // 
+            // button3
+            // 
+            this.SaveAll.Enabled = false;
+            this.SaveAll.Location = new System.Drawing.Point(425, 231);
+            this.SaveAll.Name = "button3";
+            this.SaveAll.Size = new System.Drawing.Size(142, 20);
+            this.SaveAll.TabIndex = 10;
+            this.SaveAll.Text = "Save All Json";
+            this.SaveAll.UseVisualStyleBackColor = true;
+            this.SaveAll.Click += new System.EventHandler(this.SaveFiles);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 222);
+            this.ClientSize = new System.Drawing.Size(815, 263);
+            this.Controls.Add(this.SaveAll);
+            this.Controls.Add(this.SaveState);
+            this.Controls.Add(this.SaveSummary);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox4);
@@ -595,6 +647,10 @@ namespace SilverWorkJsonLoader
         private System.Windows.Forms.TextBox StateSum;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox SelectSummary;
+        private System.Windows.Forms.Button SaveSummary;
+        private System.Windows.Forms.Button SaveState;
+        private System.Windows.Forms.Button SaveAll;
     }
 }
 

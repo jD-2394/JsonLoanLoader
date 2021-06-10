@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SilverWorkJsonLoader.Models
 {
+    // this model specifies the raw data coming from the data source.
     public class LoanDataModel
     {
         public string LoanGUID { get; set; }
@@ -17,8 +18,8 @@ namespace SilverWorkJsonLoader.Models
         public string SubjectCity { get; set; }
         public string SubjectState { get; set; }
         public string SubjectZip { get; set; }
-        public decimal SubjectAppraisedAmount { get; set; }
-        public decimal LoanAmount { get; set; }
-        public decimal InterestRate { get; set; }
+        public double SubjectAppraisedAmount { get; set; }
+        public double LoanAmount { get; set; }
+        public double InterestRate { get; set; }
     }
 }
