@@ -74,38 +74,43 @@ namespace SilverWorkJsonLoader
         {
 
             OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "JSON files (*.json)|*.json|All files (*.*)|*.*";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 ClearForm();
                 var data = loader.ParseJsonFromFile(fileDialog.FileName);
 
                 result = processor.GroupImportLoanData(data);
-                this.Sum.Text = result.summaryResults.SubjectAppraisedAmountSummary.Sum.ToString();
-                this.Average.Text = result.summaryResults.SubjectAppraisedAmountSummary.Average.ToString();
-                this.Median.Text = result.summaryResults.SubjectAppraisedAmountSummary.Median.ToString();
-                this.Minimum.Text = result.summaryResults.SubjectAppraisedAmountSummary.Minimum.ToString();
-                this.Maximum.Text = result.summaryResults.SubjectAppraisedAmountSummary.Maximum.ToString();
+                if(result.loanStateData.Count > 0)
+                {
+                    this.Sum.Text = result.summaryResults.SubjectAppraisedAmountSummary.Sum.ToString();
+                    this.Average.Text = result.summaryResults.SubjectAppraisedAmountSummary.Average.ToString();
+                    this.Median.Text = result.summaryResults.SubjectAppraisedAmountSummary.Median.ToString();
+                    this.Minimum.Text = result.summaryResults.SubjectAppraisedAmountSummary.Minimum.ToString();
+                    this.Maximum.Text = result.summaryResults.SubjectAppraisedAmountSummary.Maximum.ToString();
 
-                this.IRS_Sum.Text = result.summaryResults.InterestRateSummary.Sum.ToString();
-                this.IRS_Average.Text = result.summaryResults.InterestRateSummary.Average.ToString();
-                this.IRS_Median.Text = result.summaryResults.InterestRateSummary.Median.ToString();
-                this.IRS_Minimum.Text = result.summaryResults.InterestRateSummary.Minimum.ToString();
-                this.IRS_Maximum.Text = result.summaryResults.InterestRateSummary.Maximum.ToString();
+                    this.IRS_Sum.Text = result.summaryResults.InterestRateSummary.Sum.ToString();
+                    this.IRS_Average.Text = result.summaryResults.InterestRateSummary.Average.ToString();
+                    this.IRS_Median.Text = result.summaryResults.InterestRateSummary.Median.ToString();
+                    this.IRS_Minimum.Text = result.summaryResults.InterestRateSummary.Minimum.ToString();
+                    this.IRS_Maximum.Text = result.summaryResults.InterestRateSummary.Maximum.ToString();
 
-                this.LAS_Sum.Text = result.summaryResults.LoanAmountSummary.Sum.ToString();
-                this.LAS_Average.Text = result.summaryResults.LoanAmountSummary.Average.ToString();
-                this.LAS_Median.Text = result.summaryResults.LoanAmountSummary.Median.ToString();
-                this.LAS_Minimum.Text = result.summaryResults.LoanAmountSummary.Minimum.ToString();
-                this.LAS_Maximum.Text = result.summaryResults.LoanAmountSummary.Maximum.ToString();
-                var dataToIncludeInDropdown = result.loanStateData.Select(x => x.LoanState).ToList();
-                dataToIncludeInDropdown.Sort();
-                this.StateSelector.DataSource = dataToIncludeInDropdown;
+                    this.LAS_Sum.Text = result.summaryResults.LoanAmountSummary.Sum.ToString();
+                    this.LAS_Average.Text = result.summaryResults.LoanAmountSummary.Average.ToString();
+                    this.LAS_Median.Text = result.summaryResults.LoanAmountSummary.Median.ToString();
+                    this.LAS_Minimum.Text = result.summaryResults.LoanAmountSummary.Minimum.ToString();
+                    this.LAS_Maximum.Text = result.summaryResults.LoanAmountSummary.Maximum.ToString();
+                    var dataToIncludeInDropdown = result.loanStateData.Select(x => x.LoanState).ToList();
+                    dataToIncludeInDropdown.Sort();
+                    this.StateSelector.DataSource = dataToIncludeInDropdown;
 
-                this.StateSelector.Enabled = true;
-                this.SelectSummary.Enabled = true;
-                this.SaveSummary.Enabled = true;
-                this.SaveState.Enabled = true;
-                this.SaveAll.Enabled = true;
+                    this.StateSelector.Enabled = true;
+                    this.SelectSummary.Enabled = true;
+                    this.SaveSummary.Enabled = true;
+                    this.SaveState.Enabled = true;
+                    this.SaveAll.Enabled = true;
+                }
+                
             }
         }
 

@@ -60,35 +60,42 @@ namespace SilverWorkJsonLoader
         public LoanResultModel GenerateLoanReportSummary(List<LoanDataModel> data)
         {
             // used MathNet to provide the statistics for all the values except the Sum as this avoids the possible inefficiencies of implementing a custom algorithm where one isn't necessary.
-            var LoanAmountSummary = new SummaryModel()
+            if(data.Count > 0)
             {
-                Sum = Math.Round(Convert.ToDecimal(data.Select(x => x.LoanAmount).ToList().Sum()),2).ToString("0.00"),
-                Average = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Mean(data.Select(x => x.LoanAmount).ToList())),2).ToString("0.##"),
-                Median = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Median(data.Select(x => x.LoanAmount).ToList())),2).ToString("0.00"),
-                Maximum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Maximum(data.Select(x => x.LoanAmount).ToList())),2).ToString("0.00"),
-                Minimum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Minimum(data.Select(x => x.LoanAmount).ToList())),2).ToString("0.00")
-            };
-            var SubjectAppraisedAmountSummary = new SummaryModel()
-            {
-                Sum = Math.Round(Convert.ToDecimal(data.Select(x => x.SubjectAppraisedAmount).ToList().Sum()), 2).ToString("0.00"),
-                Average = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Mean(data.Select(x => x.SubjectAppraisedAmount).ToList())),2).ToString("0.00"),
-                Median = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Median(data.Select(x => x.SubjectAppraisedAmount).ToList())),2).ToString("0.00"),
-                Maximum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Maximum(data.Select(x => x.SubjectAppraisedAmount).ToList())),2).ToString("0.00"),
-                Minimum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Minimum(data.Select(x => x.SubjectAppraisedAmount).ToList())),2).ToString("0.00")
-            };
-            var InterestRateSummary = new SummaryModel()
-            {
-                Sum = Math.Round(Convert.ToDecimal(data.Select(x => x.SubjectAppraisedAmount).ToList().Sum()), 2).ToString("0.00"),
-                Average = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Mean(data.Select(x => x.InterestRate).ToList())),2).ToString("0.00"),
-                Median = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Median(data.Select(x => x.InterestRate).ToList())),2).ToString("0.00"),
-                Maximum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Maximum(data.Select(x => x.InterestRate).ToList())),2).ToString("0.00"),
-                Minimum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Minimum(data.Select(x => x.InterestRate).ToList())),2).ToString("0.00")
-            };
+                var LoanAmountSummary = new SummaryModel()
+                {
+                    Sum = Math.Round(Convert.ToDecimal(data.Select(x => x.LoanAmount).ToList().Sum()), 2).ToString("0.##"),
+                    Average = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Mean(data.Select(x => x.LoanAmount).ToList())), 2).ToString("0.##"),
+                    Median = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Median(data.Select(x => x.LoanAmount).ToList())), 2).ToString("0.##"),
+                    Maximum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Maximum(data.Select(x => x.LoanAmount).ToList())), 2).ToString("0.##"),
+                    Minimum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Minimum(data.Select(x => x.LoanAmount).ToList())), 2).ToString("0.##")
+                };
+                var SubjectAppraisedAmountSummary = new SummaryModel()
+                {
+                    Sum = Math.Round(Convert.ToDecimal(data.Select(x => x.SubjectAppraisedAmount).ToList().Sum()), 2).ToString("0.##"),
+                    Average = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Mean(data.Select(x => x.SubjectAppraisedAmount).ToList())), 2).ToString("0.##"),
+                    Median = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Median(data.Select(x => x.SubjectAppraisedAmount).ToList())), 2).ToString("0.##"),
+                    Maximum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Maximum(data.Select(x => x.SubjectAppraisedAmount).ToList())), 2).ToString("0.##"),
+                    Minimum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Minimum(data.Select(x => x.SubjectAppraisedAmount).ToList())), 2).ToString("0.##")
+                };
+                var InterestRateSummary = new SummaryModel()
+                {
+                    Sum = Math.Round(Convert.ToDecimal(data.Select(x => x.SubjectAppraisedAmount).ToList().Sum()), 2).ToString("0.##"),
+                    Average = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Mean(data.Select(x => x.InterestRate).ToList())), 2).ToString("0.##"),
+                    Median = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Median(data.Select(x => x.InterestRate).ToList())), 2).ToString("0.##"),
+                    Maximum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Maximum(data.Select(x => x.InterestRate).ToList())), 2).ToString("0.##"),
+                    Minimum = Math.Round(Convert.ToDecimal(MathNet.Numerics.Statistics.Statistics.Minimum(data.Select(x => x.InterestRate).ToList())), 2).ToString("0.##")
+                };
 
-            return new LoanResultModel()
-            {LoanAmountSummary = LoanAmountSummary,
-            SubjectAppraisedAmountSummary = SubjectAppraisedAmountSummary,
-            InterestRateSummary = InterestRateSummary};
+                return new LoanResultModel()
+                {
+                    LoanAmountSummary = LoanAmountSummary,
+                    SubjectAppraisedAmountSummary = SubjectAppraisedAmountSummary,
+                    InterestRateSummary = InterestRateSummary
+                };
+            }
+            return new LoanResultModel();
+            
         }
     }
 }
